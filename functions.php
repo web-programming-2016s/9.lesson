@@ -87,7 +87,36 @@
 		
 	}
 	
-
+	
+	function createInterestDropdown(){
+		
+		//query all interests
+		
+		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_romil");
+		
+		$stmt = $mysql->prepare("SELECT id, name FROM interests ORDER BY name ASC");
+		
+		echo $mysql->error;
+		
+		$stmt->bind_result($id, $name);
+		
+		$stmt->execute();
+		
+		
+		//dropdown html
+		$html = "<select name='user_interest'>";
+		
+		//for each interest
+		while($stmt->fetch()){
+			$html .= "<option value='".$id."'>".$name."</option>";
+		}
+		
+		$html .= "</select>";
+		
+		echo $html;
+	}
+	
+	
 	/*$name = "Romil";
 	
 	hello($name, "thursday", 7);
