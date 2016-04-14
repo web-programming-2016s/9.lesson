@@ -52,7 +52,7 @@
 
 <a href="?logout=1" >Log out</a>
 
-
+<?php if($_SESSION["user_role"] == "Admin"){?>
 <h2>Add interest</h2>
 <form>
 	
@@ -60,7 +60,7 @@
 	<input type="submit" name="add_new_interest" value="Add">
 
 </form>
-
+<?php } ?>
 <h2>Select user interest</h2>
 <form>
 	

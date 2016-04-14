@@ -156,6 +156,10 @@
 	
 	function createUserInterestList(){
 		
+		if()
+			
+		return;
+		
 		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_romil");
 		
 		$stmt = $mysql->prepare("
