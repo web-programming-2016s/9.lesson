@@ -70,6 +70,8 @@
 </form>
 
 
+<h1>Interests</h1>
+<?php createUserInterestList(); ?>
 
 
 
