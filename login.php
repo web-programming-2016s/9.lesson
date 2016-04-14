@@ -36,11 +36,11 @@
 		echo "signing up ...";
 		
 		//the username and password are not empty
-		if(!empty($_POST["username"]) && !empty($_POST["password"])){
+		if(!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["name"])){
 			
 			//save to db
 			
-			signup($_POST["username"], $_POST["password"]);
+			signup($_POST["username"], $_POST["password"], $_POST["name"]);
 			
 		}else{
 			
@@ -70,6 +70,7 @@
 <h1>Sign up</h1>
 <form method="POST">
 	
+	<input type="text" placeholder="First and Last name" name="name">
 	<input type="text" placeholder="username" name="username">
 	<input type="password" placeholder="password" name="password">
 	

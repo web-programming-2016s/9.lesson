@@ -14,13 +14,13 @@
 		
 		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_romil");
 		
-		$stmt = $mysql->prepare("SELECT id FROM users WHERE username=? and password=?");
+		$stmt = $mysql->prepare("SELECT id, name FROM users WHERE username=? and password=?");
 		
 		echo $mysql->error;
 		
 		$stmt->bind_param("ss", $user, $pass);
 		
-		$stmt->bind_result($id);
+		$stmt->bind_result($id, $name);
 		
 		$stmt->execute();
 		
@@ -31,6 +31,7 @@
 			//create session variables 
 			//redirect user
 			$_SESSION["user_id"] = $id;
+			$_SESSION["name"] = $name;
 			$_SESSION["username"] = $user;
 			
 			header("Location: restrict.php");
@@ -44,7 +45,7 @@
 		
 	}
 
-	function signup($user, $pass){
+	function signup($user, $pass, $name){
 		
 		//hash the password
 		$pass = hash("sha512", $pass);
@@ -53,11 +54,11 @@
 		// GLOBALS - access outside variable in function
 		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_romil");
 		
-		$stmt = $mysql->prepare("INSERT INTO users (username, password) VALUES (?, ?) ");
+		$stmt = $mysql->prepare("INSERT INTO users (username, password, name) VALUES (?, ?, ?) ");
 		
 		echo $mysql->error;
 		
-		$stmt->bind_param("ss", $user, $pass);
+		$stmt->bind_param("sss", $user, $pass, $name);
 		
 		if($stmt->execute()){
 			echo "user saved successfully!";
