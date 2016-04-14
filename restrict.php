@@ -31,7 +31,20 @@
 		
 	}
 	
-	createInterestDropdown();
+	//someone clicked the button "select"
+	if(isset($_GET["select_interest"])){
+		
+		if(!empty($_GET["user_interest"])){
+			
+			saveUserInterest($_GET["user_interest"]);
+			
+		}else{
+			echo "error";
+		}
+		
+	}
+	
+	
 
 ?>
 
@@ -47,6 +60,18 @@
 	<input type="submit" name="add_new_interest" value="Add">
 
 </form>
+
+<h2>Select user interest</h2>
+<form>
+	
+	<?php createInterestDropdown(); ?>
+	<input type="submit" name="select_interest" value="Select">
+
+</form>
+
+
+
+
 
 
 

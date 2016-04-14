@@ -117,6 +117,26 @@
 	}
 	
 	
+	function saveUserInterest($interest_id){
+		
+		$mysql = new mysqli("localhost", $GLOBALS["db_username"], $GLOBALS["db_password"], "webpr2016_romil");
+		
+		$stmt = $mysql->prepare("INSERT INTO users_interests (user_id, interests_id) VALUES (?, ?)");
+		
+		echo $mysql->error;
+		
+		//$_SESSION["user_id"] logged in user ID
+		$stmt->bind_param("ii", $_SESSION["user_id"], $interest_id);
+		
+		if($stmt->execute()){
+			echo "save successfully";
+		}else{
+			echo $stmt->error;
+		}
+		
+	}
+	
+	
 	/*$name = "Romil";
 	
 	hello($name, "thursday", 7);
